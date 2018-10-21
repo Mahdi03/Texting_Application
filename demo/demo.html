@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Send A One-Time Text</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../theme.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h2>Directions:</h2>
+    <ol>
+        <li>Choose whether you want to be replied to with your email or your Phone Number through text (Text Messaging Rates May Apply), and fill out the Sender information.</li>
+        <li>Choose whether you want to send an email, or a text, and fill out the Recipient information.</li>
+        <li>Fill in a Subject (Not Required), and the message (It can be HTML!)</li>
+        <li>Press send!</li>
+    </ol>
+    <p>Enter the Service Provider and the phone number to send a text right now!!</p>
+    <form name="mainText" action="demo.php" onsubmit="alertEmailText();" method="post">
+        <u>From:</u>
+        <div class="peopleInfo">
+            <input type="radio" id="chooseEmailFrom" name="inputSenderFrom" value="emailFrom" required />
+            <label for="chooseEmailFrom">Email</label>
+            <input type="radio" id="chooseMobileNumberFrom" name="inputSenderFrom" value="mobileNumberFrom" required />
+            <label for="chooseMobileNumberFrom">Phone Number</label><br />
+            <div id="mobileNumberFrom" class="senderInfo">
+                Sender's Service Provider:
+                <select name="inputMobileServiceProviderFrom" required>
+                    <!--These are just some of them-->
+                    <option value="Verizon">Verizon</option>
+                    <option value="ATT">AT&amp;T</option>
+                    <option value="TMobile">T-Mobile</option>
+                    <option value="Sprint">Sprint</option>
+                </select>
+                <br /> Sender's Phone Number (Only Numbers): <input type="tel" name="inputMobileNumberFrom" placeholder="Mobile Number (Without Signs)" maxlength="11" size="11" />
+            </div>
+            <div id="emailFrom" class="senderInfo">
+                Sender's Email: <input type="email" name="inputEmailFrom" placeholder="From..." required /><br />
+            </div>
+            <input name="fromSenderInfoType" type="hidden" value="" />
+        </div>
+        <hr />
+        <u>To:</u>
+        <div class="peopleInfo">
+            <input type="radio" id="chooseEmailTo" name="inputSenderTo" required />
+            <label for="chooseEmailTo">Email</label>
+            <input type="radio" id="chooseMobileNumberTo" name="inputSenderTo" required />
+            <label for="chooseMobileNumberTo">Phone Number</label><br />
+            <div id="mobileNumberTo" class="recipientInfo">
+                Recipient's Service Provider:
+                <select name="inputMobileServiceProviderTo" required>
+                    <!--These are just some of them-->
+                    <option value="Verizon">Verizon</option>
+                    <option value="ATT">AT&amp;T</option>
+                    <option value="TMobile">T-Mobile</option>
+                    <option value="Sprint">Sprint</option>
+                </select>
+                <br /> Recipient's Phone Number (Only Numbers): <input type="tel" name="inputMobileNumberTo" placeholder="Phone Number" maxlength="11" size="11" /><br />
+            </div>
+            <div id="emailTo" class="recipientInfo">
+                Recipient's Email: <input type="email" name="inputEmailTo" placeholder="To..." required /><br />
+            </div>
+            <input name="toRecipientInfoType" type="hidden" value="" />
+        </div>
+        <hr /> Subject: <input type="text" name="inputSubject" placeholder="Subject..." />
+        <hr /> Message:
+        <br /><textarea name="inputMessage" rows="15" cols="50" placeholder="Message..." required></textarea><br /><br />
+        <button>Send!!</button>
+    </form>
+    <script>
+        function alertEmailText() {
+            var mainAlertMSG = "";
+            mainAlertMSG += "The Sender Will Show Up As: " + document.forms["mainText"]["inputEmailFrom"].value + document.forms["mainText"]["inputMobileNumberFrom"] + "\n";
+            mainAlertMSG += "The Subject Will Show Up As: (" + document.forms["mainText"]["inputSubject"].value + ")\n";
+            mainAlertMSG += "The Message Will Show Up As: " + document.forms["mainText"]["inputMessage"].innerHTML;
+        }
+        //When The Form Is Changed
+        document.querySelector("form[name=mainText]").addEventListener("change", function() {
+            //If Sender Email Is Selected
+            if (document.forms["mainText"]["inputSenderFrom"][0].checked === true) {
+                //Show The Email Input and add Required Attribute
+                document.getElementById("emailFrom").style.display = "block";
+                document.getElementById("emailFrom").children[0].setAttribute("required", "");
+                //Hide The Mobile Number Input and Remove The Required Attribute
+                document.getElementById("mobileNumberFrom").style.display = "none";
+                document.getElementById("mobileNumberFrom").children[0].removeAttribute("required");
+                document.getElementById("mobileNumberFrom").children[1].removeAttribute("required");
+                //Set The SenderInfo Value To Email
+                document.querySelector("input[name=fromSenderInfoType]").setAttribute("value", "email");
+            }
+            //If Sender Phone Number Is Selected
+            else if (document.forms["mainText"]["inputSenderFrom"][1].checked === true) {
+                //Hide The Email Input and Remove The Required Attribute
+                document.getElementById("emailFrom").style.display = "none";
+                document.getElementById("emailFrom").children[0].removeAttribute("required");
+                //Show The Mobile Number Input and add The Required Attribute
+                document.getElementById("mobileNumberFrom").style.display = "block";
+                document.getElementById("mobileNumberFrom").children[0].setAttribute("required", "");
+                document.getElementById("mobileNumberFrom").children[1].setAttribute("required", "");
+                //Set The SenderInfo Value To Mobile Number
+                document.querySelector("input[name=fromSenderInfoType]").setAttribute("value", "mobileNumber");
+            }
+            //If Recipient Email Is Selected 
+            if (document.forms["mainText"]["inputSenderTo"][0].checked === true) {
+                //Show The Email Input and add Required Attribute
+                document.getElementById("emailTo").style.display = "block";
+                document.getElementById("emailTo").children[0].setAttribute("required", "");
+                //Hide The Mobile Number Input and Remove The Required Attribute
+                document.getElementById("mobileNumberTo").style.display = "none";
+                document.getElementById("mobileNumberTo").children[0].removeAttribute("required");
+                document.getElementById("mobileNumberTo").children[1].removeAttribute("required");
+                //Set The RecipientInfo Value To Email
+                document.querySelector("input[name=toRecipientInfoType]").setAttribute("value", "email");
+            }
+            //If Recipient Phone Number Is Selected
+            else if (document.forms["mainText"]["inputSenderTo"][1].checked === true) {
+                //Hide The Email Input and Remove The Required Attribute
+                document.getElementById("emailTo").style.display = "none";
+                document.getElementById("emailTo").children[0].removeAttribute("required");
+                //Show The Mobile Number Input and add The Required Attribute
+                document.getElementById("mobileNumberTo").style.display = "block";
+                document.getElementById("mobileNumberTo").children[0].setAttribute("required", "");
+                document.getElementById("mobileNumberTo").children[1].setAttribute("required", "");
+                //Set The RecipientInfo Value To Mobile Number
+                document.querySelector("input[name=toRecipientInfoType]").setAttribute("value", "mobileNumber");
+            }
+        });
+    </script>
+</body>
+
+</html>

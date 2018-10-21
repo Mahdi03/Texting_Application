@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Send A Text Via PHP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /*Phones:*/
+        
+        @media screen and (max-width:481px),
+        @media screen and (max-width:320px) {
+            body {
+                width: 92%;
+                font-size: 1em;
+            }
+        }
+        /*Laptops/Desktops*/
+        
+        @media (min-width:1025px),
+        @media (max-width:1281px) {
+            body {
+                width: 75%;
+                font-size: 1.5em;
+            }
+        }
+        
+        @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+        body {
+            margin: 0 auto;
+            font-family: "Titillium Web", sans-serif;
+            line-height: 1.5;
+        }
+        
+        textarea {
+            width: 100%;
+        }
+        
+        input,
+        textarea,
+        button,
+        select {
+            font-size: inherit;
+            font-family: inherit;
+        }
+        
+        #toSection {
+            margin-left: 1em;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBg1HkNb2DgJww8Jz8UyJ0qLaWYi8p1KIo",
+            authDomain: "texting-application.firebaseapp.com",
+            databaseURL: "https://texting-application.firebaseio.com",
+            projectId: "texting-application",
+            storageBucket: "texting-application.appspot.com",
+            messagingSenderId: "1033986080189"
+        };
+        firebase.initializeApp(config);
+        console.log(firebase);
+    </script>
+</head>
+
+<body>
+    <p>Enter the Service Provider and the phone number to send a text right now!!</p>
+    <form name="mainText" action="texting.php" onsubmit="alertEmailText()" method="post">
+        From: <input type="text" name="inputFrom" placeholder="From..." required /><br /> To:
+        <div class="">
+            Recipient's Service Provider: <select name="inputMobileServiceProvider" required>
+              <!--These are just some of them-->
+              <option value="Verizon">Verizon</option>
+              <option value="ATT">AT&amp;T</option>
+              <option value="TMobile">T-Mobile</option>
+              <option value="Sprint">Sprint</option>
+            </select><br /> Recipient's Phone Number (Only Numbers): <input type="tel" name="inputMobileNumber" placeholder="Mobile Number (Without Signs)" maxlength="11" size="11" required /><br />
+        </div>
+        Subject: <input type="text" name="inputSubject" placeholder="Subject..." /><br /> Message:
+        <br /><textarea name="inputMessage" rows="15" cols="50" placeholder="Message..." required></textarea><br /><br />
+        <button>Send!!</button>
+    </form>
+    <script>
+        function alertEmailText() {
+            var mainAlertMSG = "";
+            mainAlertMSG += "The Sender Will Show Up As: " + +"\n";
+            mainAlertMSG += "The Subject Will Show Up As: (" + +")\n";
+            mainAlertMSG += "The Message Will Show Up As: " + ;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+/*Phones:*/
+
+@media screen and (max-width:481px) {
+    body {
+        width: 92%;
+        font-size: 1em;
+    }
+}
+
+@media screen and (max-width:320px) {
+    body {
+        width: 92%;
+        font-size: 1em;
+    }
+}
+
+
+/*Laptops/Desktops*/
+
+@media (min-width: 1025px) {
+    body {
+        width: 75%;
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 1281px) {
+    body {
+        width: 75%;
+        font-size: 1.5em;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+body {
+    margin: 0 auto;
+    font-family: "Titillium Web", sans-serif;
+    line-height: 1.5;
+}
+
+textarea {
+    width: 100%;
+}
+
+input,
+textarea,
+button,
+select {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+input[type=radio]:hover,
+label:hover {
+    cursor: pointer;
+}
+
+.peopleInfo {
+    margin-left: 1em;
+}
+
+.peopleInfo *:not(input[name=inputSenderFrom],
+input[name=inputSenderTo],
+label) {
+    display: none;
+}
+
+#mobileNumberFrom,
+#emailFrom,
+#mobileNumberTo,
+#emailTo {
+    display: none;
+}
